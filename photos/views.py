@@ -2,7 +2,7 @@
 
 import datetime as dt
 from django.shortcuts import render
-from .models import Article
+from .models import Article,Location,Category
 from django.http import HttpResponse,Http404
 
 # Create your views here.
@@ -40,8 +40,16 @@ def past_days_photos(request, past_date):
         return redirect(photos_today)
 
     photos = Article.days_photos(date)
-    return render(request, 'all-photos/past-photos.html',{"date": date,"photos":photos})    
+    return render(request, 'all-photos/past-photos.html',{"date": date,"photos":photos}) 
 
+def display_location(request,location_id):
+    try:
+        location = Location.objects.get(id = location_id)
+        images = Article.objects.filter(image_location = location.id)
+        locations = Location.objects.all()
+    except:
+        raise Http404()
+    return render(request,'location.html',{'location':location,'images':images, 'locations':locations})
 
 def search_category(request):
     locations = Location.objects.all()
@@ -49,11 +57,11 @@ def search_category(request):
         search_term = (request.GET.get('category')).title()
         searched_images = Article.search_by_category(search_term)
         message = f'{search_term}'
-        return render(request,'search.html',{'message':message,'images':searched_images,'locations':locations})
+        return render(request,'all-photos/search.html',{'message':message,'images':searched_images})
 
     else:
         message = "You haven't searched for any category"
-        return render(request,'search.html',{'message':message,'locations':locations})
+        return render(request,'all-photos/search.html',{'message':message,'locations':locations})
 
         return render(request, 'all-photos/search.html',{"message":message})
  
