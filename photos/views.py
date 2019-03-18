@@ -11,17 +11,6 @@ def welcome(request):
 
 def welcome(request):
     return HttpResponse('Welcome to the Moringa Tribune')
-# def photos_of_day(request):
-#     date = dt.date.today()
-#     html = f'''
-#         <html>
-#             <body>
-#                 <h1> {date.day}-{date.month}-{date.year}</h1>
-#             </body>
-#         </html>
-#             '''
-#     # return HttpResponse(html)
-#     return render(request, 'all-photos/today-photos.html', {"date": date,})
 
 def convert_dates(dates):
 
@@ -33,27 +22,11 @@ def convert_dates(dates):
     # Returning the actual day of the week
     day = days[day_number]
     return day
-# def past_days_photos(request,past_date):
-#     try:
-#         # Converts data from the string Url
-#         date = dt.datetime.strptime(past_date,'%Y-%m-%d').date()
-
-#     except ValueError:
-#         # Raise 404 error when ValueError is thrown
-#         raise Http404()
-#     day = convert_dates(date)
-#     html = f'''
-#         <html>
-#             <body>
-#                 <h1>photos for {day} {date.day}-{date.month}-{date.year}</h1>
-#             </body>
-#         </html>
-#             '''
-#     return HttpResponse(html)    
+ 
 def photos_today(request):
     date = dt.date.today()
     photos = Article.todays_photos()
-    return render(request, 'all-photos/today-photos.html', {"date": date,"photos":photos})
+    return render(request, 'all-photos/article.html', {"date": date,"photos":photos})
 def past_days_photos(request, past_date):
     try:
         # Converts data from the string Url
@@ -80,9 +53,9 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'all-photos/search.html',{"message":message})   
-def article(request,article_id):
-    try:
-        article = Article.objects.get(id = article_id)
-    except DoesNotExist:
-        raise Http404()
+def article(request):
+  
+    article = Article.objects.all()
+    print(article)
+    
     return render(request,"all-photos/article.html", {"article":article})        

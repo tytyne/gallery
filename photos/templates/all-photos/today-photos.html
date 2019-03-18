@@ -15,6 +15,10 @@
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
             <img src="{{photos_item.article_image.url}}" class="img-responsive" alt="Image">
         </div>
+        <p>Posted {{article.pub_date|timesince}} by {{article.editor.first_name}}</p>
+
+
+
         {% else %}
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
             No image

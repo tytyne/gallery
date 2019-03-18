@@ -36,12 +36,6 @@ class Category(models.Model):
 
 
 
-# class tags(models.Model):
-#     name = models.CharField(max_length =30)
-
-#     def __str__(self):
-#         return self.name
-
 class Article(models.Model):
     title = models.CharField(max_length =60)
     post = models.TextField()
@@ -59,9 +53,34 @@ class Article(models.Model):
     def days_photos(cls,date):
         photos = cls.objects.filter(pub_date__date = date)
         return photos    
+     
+
+    @classmethod
+    def save_image(self):
+      self.save()  
+
+
+    @classmethod
+    def delete_image():
+       photos.objects.filter(id=self.pk).delete()
+
+    # @classmethod
+    # def update_image():
+    #    db.session.update()
+    #    db.session.commit() 
+
+
+    # @classmethod
+    # def get_image_by_id(id):
+    #    db.session.delete()
+    #    db.session.commit() 
+
     @classmethod
     def search_by_category(cls,search_term):
-        photos = cls.objects.filter(title__icontains=search_term)
-        return photos  
-
-
+        photos = cls.objects.filter(category__icontains=search_term)
+        return photos 
+    # @classmethod
+    # def filter_by_location(location,search_term):
+    #     photos = cls.objects.filter(location__icontains=search_term)
+    #     return photos 
+     
