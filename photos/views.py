@@ -41,18 +41,22 @@ def past_days_photos(request, past_date):
 
     photos = Article.days_photos(date)
     return render(request, 'all-photos/past-photos.html',{"date": date,"photos":photos})    
-def search_results(request):
 
-    if 'article' in request.GET and request.GET["article"]:
-        search_term = request.GET.get("article")
-        searched_articles = Article.search_by_category(search_term)
-        message = f"{search_term}"
 
-        return render(request, 'all-photos/search.html',{"message":message,"articles": searched_articles})
+def search_category(request):
+    locations = Location.objects.all()
+    if 'category' in request.GET and request.GET['category']:
+        search_term = (request.GET.get('category')).title()
+        searched_images = Article.search_by_category(search_term)
+        message = f'{search_term}'
+        return render(request,'search.html',{'message':message,'images':searched_images,'locations':locations})
 
     else:
-        message = "You haven't searched for any term"
-        return render(request, 'all-photos/search.html',{"message":message})   
+        message = "You haven't searched for any category"
+        return render(request,'search.html',{'message':message,'locations':locations})
+
+        return render(request, 'all-photos/search.html',{"message":message})
+ 
 def article(request):
   
     article = Article.objects.all()

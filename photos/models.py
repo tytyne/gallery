@@ -79,8 +79,5 @@ class Article(models.Model):
     def search_by_category(cls,search_term):
         photos = cls.objects.filter(category__icontains=search_term)
         return photos 
-    # @classmethod
-    # def filter_by_location(location,search_term):
-    #     photos = cls.objects.filter(location__icontains=search_term)
-    #     return photos 
+   
      
