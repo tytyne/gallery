@@ -45,11 +45,11 @@ def past_days_photos(request, past_date):
 def display_location(request,location_id):
     try:
         location = Location.objects.get(id = location_id)
-        images = Article.objects.filter(image_location = location.id)
+        images = Article.objects.filter(location = location.id)
         locations = Location.objects.all()
     except:
         raise Http404()
-    return render(request,'location.html',{'location':location,'images':images, 'locations':locations})
+    return render(request,'all-photos/location.html',{'location':location,'images':images, 'locations':locations})
 
 def search_category(request):
     locations = Location.objects.all()
