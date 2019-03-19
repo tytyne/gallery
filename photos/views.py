@@ -42,21 +42,21 @@ def past_days_photos(request, past_date):
     photos = Article.days_photos(date)
     return render(request, 'all-photos/past-photos.html',{"date": date,"photos":photos}) 
 
-# def display_location(request,location_id):
-#     try:
-#         location = Location.objects.get(id = location_id)
-#         images = Article.objects.filter(location = location.id)
-#         locations = Location.objects.all()
-#     except:
-#         raise Http404()
-#     return render(request,'all-photos/location.html',{'location':location,'images':images, 'locations':locations})
-
 def display_location(request,location_id):
     try:
-        location = Article.objects.get(id = location_id)
-    except DoesNotExist:
+        location = Location.objects.get(id = location_id)
+        images = Article.objects.filter(location = location.id)
+        locations = Location.objects.all()
+    except:
         raise Http404()
-    return render(request,"all-news/location.html", {"location":location})  
+    return render(request,'all-photos/location.html',{'location':location,'images':images, 'locations':locations})
+
+# def display_location(request,location_id):
+#     try:
+#         location = Article.objects.get(id = location_id)
+#     except DoesNotExist:
+#         raise Http404()
+#     return render(request,"all-news/location.html", {"location":location})  
 
 def search_category(request):
     locations = Location.objects.all()
