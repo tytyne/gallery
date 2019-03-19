@@ -64,20 +64,12 @@ class Article(models.Model):
     def delete_image():
        photos.objects.filter(id=self.pk).delete()
 
-    # @classmethod
-    # def update_image():
-    #    db.session.update()
-    #    db.session.commit() 
-
-
-    # @classmethod
-    # def get_image_by_id(id):
-    #    db.session.delete()
-    #    db.session.commit() 
-
+  
     @classmethod
     def search_by_category(cls,search_term):
         photos = cls.objects.filter(category__icontains=search_term)
-        return photos 
+        return photos
+   
+
    
      
