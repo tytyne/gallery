@@ -37,20 +37,7 @@
 
 
 <ul class="nav nav-pills" style="background-color:rgb(248, 176, 128)">
-    <li class="active"><a href="{% url 'photosToday' %}">Home</a></li>
 
-    <li class="dropdown">
-
-        <a href="{% url 'display_location'%}" data-toggle="dropdown" class="dropdown-toggle">Locations <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-
-
-            {% for location in locations %}
-            <li><a href="{% url 'display_location' location.id%}">{{location.location_name}}</a></li>
-            {% endfor %}
-
-        </ul>
-    </li>
 
     <!-- Adding a search form  -->
     <div class="col-sm-4 col-md-4 navbar-right">
