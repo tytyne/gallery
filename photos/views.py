@@ -23,10 +23,10 @@ def convert_dates(dates):
     day = days[day_number]
     return day
  
-def photos_today(request):
-    date = dt.date.today()
-    photos = Article.todays_photos()
-    return render(request, 'all-photos/article.html', {"date": date,"photos":photos})
+# def photos_today(request):
+#     date = dt.date.today()
+#     photos = Article.todays_photos()
+#     return render(request, 'all-photos/article.html', {"date": date,"photos":photos})
 def past_days_photos(request, past_date):
     try:
         # Converts data from the string Url
@@ -75,6 +75,6 @@ def search_category(request):
 def article(request):
   
     article = Article.objects.all()
-    print(article)
+
     
     return render(request,"all-photos/article.html", {"article":article})        
