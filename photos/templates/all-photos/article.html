@@ -14,14 +14,15 @@
 
     <h1 class="text-center">Photo Gallery</h1>
     <div class="row">
+
         {% for ok in article%}
         <div class="col-md-4">
-            <a data-toggle="modal" data-target="#myModal" data-target="#{{article_image.id}}">
+            <a data-toggle="modal" data-target="#{{ok.id}}">
                 <img style=" margin-top: 20px; margin-bottom: 20px; width:350px; height:300px;" src="{{ok.article_image.url}}">
             </a>
             <!-- Modal -->
 
-            <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal fade" id="{{ok.id}}" role="dialog">
                 <div style="max-width:100%; max-height:100%; padding-top:100px;" class="modal-dialog">
 
                     <!-- Modal content-->
