@@ -3,7 +3,7 @@ from .models import Editor,Article,Location,Category
 # Register your models here.
 
 class ArticleAdmin(admin.ModelAdmin):
-    filter_horizontal =('location',)
+    filter_horizontal =('editor',)
 
 admin.site.register(Editor)
 admin.site.register(Location)
