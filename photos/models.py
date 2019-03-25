@@ -39,9 +39,9 @@ class Category(models.Model):
 class Article(models.Model):
     title = models.CharField(max_length =60)
     post = models.TextField()
-    location = models.ForeignKey(Editor)
+    location = models.ForeignKey(Location,null=True)
     category= models.ForeignKey(Category,blank =True,null=True)
-    editor = models.ManyToManyField(Location)
+    editor = models.ManyToManyField(Editor,null=True)
     pub_date = models.DateTimeField(auto_now_add=True)    
     article_image = models.ImageField(upload_to = 'articles/',blank=True)
     @classmethod
