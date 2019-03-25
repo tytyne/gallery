@@ -1,7 +1,7 @@
 from django.test import TestCase
 import datetime as dt
 # Create your tests here.
-from .models import Editor,Article,tags
+from .models import Editor,Image,tags
 
 class EditorTestClass(TestCase):
 
@@ -28,7 +28,7 @@ class Editor(models.Model):
         self.save()
 
 
-class ArticleTestClass(TestCase):
+class ImageTestClass(TestCase):
 
     def setUp(self):
         # Creating a new editor and saving it
@@ -39,21 +39,21 @@ class ArticleTestClass(TestCase):
         self.new_tag = tags(name = 'testing')
         self.new_tag.save()
 
-        self.new_article= Article(title = 'Test Article',post = 'This is a random test Post',editor = self.james)
-        self.new_article.save()
+        self.new_image= Image(title = 'Test Image',post = 'This is a random test Post',editor = self.james)
+        self.new_image.save()
 
-        self.new_article.tags.add(self.new_tag)
+        self.new_image.tags.add(self.new_tag)
 
     def tearDown(self):
         Editor.objects.all().delete()
         tags.objects.all().delete()
-        Article.objects.all().delete()
+        Image.objects.all().delete()
     def test_get_photos_today(self):
-        today_photos = Article.todays_photos()
+        today_photos = Image.todays_photos()
         self.assertTrue(len(today_photos)>0)
 
     def test_get_photos_by_date(self):
         test_date = '2017-03-17'
         date = dt.datetime.strptime(test_date, '%Y-%m-%d').date()
-        photos_by_date = Article.days_photos(date)
+        photos_by_date = Image.days_photos(date)
         self.assertTrue(len(photos_by_date) == 0)                

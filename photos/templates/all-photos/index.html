@@ -15,10 +15,10 @@
     <h1 class="text-center">Photo Gallery</h1>
     <div class="row">
 
-        {% for ok in article%}
+        {% for ok in image%}
         <div class="col-md-4">
             <a data-toggle="modal" data-target="#{{ok.id}}">
-                <img style=" margin-top: 20px; margin-bottom: 20px; width:350px; height:300px;" src="{{ok.article_image.url}}">
+                <img style=" margin-top: 20px; margin-bottom: 20px; width:350px; height:300px;" src="{{ok.image_image.url}}">
             </a>
             <!-- Modal -->
 
@@ -32,7 +32,7 @@
                             <h4 class="modal-title"><strong>Title:</strong>"{{ok.title}}"</h4>
                         </div>
                         <div class="modal-body">
-                            <img src="{{ok.article_image.url}}" style="width:570px; height:500px;" alt="Image">
+                            <img src="{{ok.image_image.url}}" style="width:570px; height:500px;" alt="Image">
                             <br>
                             <h5><strong>Description:</strong>"{{ok.post}}"</h5>
                             <h5><strong>Taken in:</strong>"{{ok.location}}"</h5>
@@ -40,8 +40,8 @@
 
                         </div>
                         <div class="modal-footer">
-                            <input class="form-control input-lg" type="text" value="{{ok.article_image.url}}" id="{{ok.article_image.id}}-url">
-                            <button class="btn btn-outline-info" onclick="copyUrl('{{ok.article_image.id}}-url')">Copy Image Url</button>
+                            <input class="form-control input-lg" type="text" value="{{ok.image_image.url}}" id="{{ok.image_image.id}}-url">
+                            <button class="btn btn-outline-info" onclick="copyUrl('{{ok.image_image.id}}-url')">Copy Image Url</button>
                             <br>
                             <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color:rgb(105, 164, 168);color:white" ;>Close</button>
                         </div>

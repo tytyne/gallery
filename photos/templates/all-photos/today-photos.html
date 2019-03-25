@@ -5,17 +5,17 @@
     {% for photos_item in photos %}
 
     <div class="row">
-        <!-- displaying photos articles -->
+        <!-- displaying photos images -->
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
             <small class="text-center"> {{ photos_item.title }} </small>
         </div>
 
-        <!--Display photos Article images  -->
-        {% if photos_item.article_image %}
+        <!--Display photos image images  -->
+        {% if photos_item.image_image %}
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <img src="{{photos_item.article_image.url}}" class="img-responsive" alt="Image">
+            <img src="{{photos_item.image_image.url}}" class="img-responsive" alt="Image">
         </div>
-        <p>Posted {{article.pub_date|timesince}} by {{article.editor.first_name}}</p>
+        <p>Posted {{image.pub_date|timesince}} by {{image.editor.first_name}}</p>
 
 
 

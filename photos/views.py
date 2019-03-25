@@ -2,7 +2,7 @@
 
 import datetime as dt
 from django.shortcuts import render
-from .models import Article,Location,Category
+from .models import Image,Location,Category
 from django.http import HttpResponse,Http404
 
 # Create your views here.
@@ -25,8 +25,8 @@ def convert_dates(dates):
  
 # def photos_today(request):
 #     date = dt.date.today()
-#     photos = Article.todays_photos()
-#     return render(request, 'all-photos/article.html', {"date": date,"photos":photos})
+#     photos = Image.todays_photos()
+#     return render(request, 'all-photos/image.html', {"date": date,"photos":photos})
 def past_days_photos(request, past_date):
     try:
         # Converts data from the string Url
@@ -39,13 +39,13 @@ def past_days_photos(request, past_date):
     if date == dt.date.today():
         return redirect(photos_today)
 
-    photos = Article.days_photos(date)
+    photos = Image.days_photos(date)
     return render(request, 'all-photos/past-photos.html',{"date": date,"photos":photos}) 
 
 def display_location(request,location_id):
     try:
         location = Location.objects.get(id = location_id)
-        images = Article.objects.filter(location = location.id)
+        images = Image.objects.filter(location = location.id)
         locations = Location.objects.all()
     except:
         raise Http404()
@@ -53,7 +53,7 @@ def display_location(request,location_id):
 
 # def display_location(request,location_id):
 #     try:
-#         location = Article.objects.get(id = location_id)
+#         location = Image.objects.get(id = location_id)
 #     except DoesNotExist:
 #         raise Http404()
 #     return render(request,"all-news/location.html", {"location":location})  
@@ -62,7 +62,7 @@ def search_category(request):
     locations = Location.objects.all()
     if 'category' in request.GET and request.GET['category']:
         search_term = (request.GET.get('category')).title()
-        searched_images = Article.search_by_category(search_term)
+        searched_images = Image.search_by_category(search_term)
         message = f'{search_term}'
         return render(request,'all-photos/search.html',{'message':message,'images':searched_images})
 
@@ -72,9 +72,9 @@ def search_category(request):
 
         return render(request, 'all-photos/search.html',{"message":message})
  
-def article(request):
+def image(request):
   
-    article = Article.objects.all()
+    image = Image.objects.all()
 
     
-    return render(request,"all-photos/article.html", {"article":article})        
+    return render(request,"all-photos/index.html", {"image":image})        
