@@ -23,10 +23,10 @@ def convert_dates(dates):
     day = days[day_number]
     return day
  
-# def photos_today(request):
-#     date = dt.date.today()
-#     photos = Image.todays_photos()
-#     return render(request, 'all-photos/image.html', {"date": date,"photos":photos})
+def photos_today(request):
+    date = dt.date.today()
+    photos = Image.todays_photos()
+    return render(request, 'all-photos/index.html', {"date": date,"photos":photos})
 def past_days_photos(request, past_date):
     try:
         # Converts data from the string Url

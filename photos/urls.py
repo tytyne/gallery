@@ -8,7 +8,7 @@ urlpatterns=[
     url(r'^$',views.image,name='photosToday'),
     url(r'^archives/(\d{4}-\d{2}-\d{2})/$',views.past_days_photos,name = 'pastPhotos'),
     url(r'^search/', views.search_category, name='search_category'),  
-    # url(r'^^media\/', views.display_location, name='display_location'), 
+    url(r'^media\/', views.display_location, name='display_location'), 
     # url(r'^image/(\d+)',views.image,name ='image')
  
 ]
