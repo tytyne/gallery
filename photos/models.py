@@ -70,6 +70,6 @@ class Article(models.Model):
         photos = cls.objects.filter(category__icontains=search_term)
         return photos
    
-
+  
    
      
